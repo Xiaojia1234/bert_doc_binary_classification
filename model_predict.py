@@ -65,3 +65,5 @@ df = pd.DataFrame({'句子':texts, "是否属于出访类事件": labels})
 df.to_excel('./result.xlsx', index=False)
 
 # 经验证 所有预测的文档完全正确
+
+# 经过测验：BERT在小标注样本量的效果和不错哦~
