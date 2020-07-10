@@ -56,19 +56,19 @@ print('y_train : ', y_train .shape)
 print('y_test: ', y_test.shape)
 
 #
-# # 创建模型
-# x_in = Input(shape=(768, ))
-# x_out = Dense(32, activation="relu")(x_in)
-# x_out = BatchNormalization()(x_out)
-# x_out = Dense(num_classes, activation="softmax")(x_out)
-# model = Model(inputs=x_in, outputs=x_out)
-# print(model.summary())
+# 创建模型
+x_in = Input(shape=(768, ))
+x_out = Dense(32, activation="relu")(x_in)
+x_out = BatchNormalization()(x_out)
+x_out = Dense(num_classes, activation="softmax")(x_out)
+model = Model(inputs=x_in, outputs=x_out)
+print(model.summary())
+
+model.compile(loss='categorical_crossentropy',
+              optimizer=Adam(),
+              metrics=['accuracy'])
 #
-# model.compile(loss='categorical_crossentropy',
-#               optimizer=Adam(),
-#               metrics=['accuracy'])
-#
-# # 模型训练以及评估
-# model.fit(x_train, y_train, batch_size=8, epochs=20)
-# model.save('visit_classify.h5')
-# # print(model.evaluate(x_test, y_test))
+# 模型训练以及评估
+model.fit(x_train, y_train, batch_size=8, epochs=20)
+model.save('visit_classify.h5')
+# print(model.evaluate(x_test, y_test))
