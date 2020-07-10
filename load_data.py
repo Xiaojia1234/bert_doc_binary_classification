@@ -35,5 +35,6 @@ test_df = pd.DataFrame({'label': labels, 'text': texts})
 # print(test_df.head())
 
 train_df['text_len'] = train_df['text'].apply(lambda x: len(x))
-# print(train_df.describe())
+print(train_df.describe())
+#从这个结构展示可以看出，训练数据的文本长度的75%分位点为100.75，所以后面模型训练时的padding长度统一选取100
 # print('train_df[\'text_len\']:',train_df['text_len'])
