@@ -3,10 +3,18 @@
 # place: Pudong Shanghai
 # time: 2020-02-12 17:33
 
+'''
+使用/修改/注释：@Amy
+    第三个程序模块
+    再次验证模型的效果，对新数据（20个新的文档进行预测）
+
+'''
+
 import pandas as pd
 import numpy as np
 from bert.extract_feature import BertVector
 from keras.models import load_model
+
 load_model = load_model("visit_classify.h5")
 
 # 预测语句
@@ -38,14 +46,15 @@ bert_model = BertVector(pooling_strategy="REDUCE_MEAN", max_seq_len=100)
 
 # 对上述句子进行预测
 for text in texts:
-
     # 将句子转换成向量
     vec = bert_model.encode([text])["encodes"][0]
-    x_train = np.array([vec])
+    x_predict = np.array([vec])
 
     # 模型预测
-    predicted = load_model.predict(x_train)
-    y = np.argmax(predicted[0])
+    predicted = load_model.predict(x_predict)
+    print('predicted:',predicted[0])
+    y = np.argmax(predicted[0]) # np.argmax 返回list中元素最大值所对应的索引值
+    print('y:',y)
     label = 'Y' if y else 'N'
     labels.append(label)
 
@@ -54,3 +63,5 @@ for text,label in zip(texts, labels):
 
 df = pd.DataFrame({'句子':texts, "是否属于出访类事件": labels})
 df.to_excel('./result.xlsx', index=False)
+
+# 经验证 所有预测的文档完全正确
