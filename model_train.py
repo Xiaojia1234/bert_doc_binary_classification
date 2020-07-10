@@ -3,6 +3,15 @@
 # place: Pudong Shanghai
 # time: 2020-02-12 13:37
 
+'''
+使用/修改/注释：@Amy
+    数据预处理之后，利用Bert提取文档的特征，每个文档的填充长度为100，对应一个768维的向量；
+    然后用Keras创建DNN来进行模型训练；
+    然后对测试集进行验证，并保存模型文件，便于后续的模型预测使用。
+
+'''
+
+
 import os
 # 使用GPU训练
 # os.environ["CUDA_VISIBLE_DEVICES"] = "4,5,6,7,8"

@@ -2,6 +2,14 @@
 # author: Jclian91
 # place: Pudong Shanghai
 # time: 2020-02-12 12:57
+
+'''
+使用/修改/注释：@Amy
+    读取数据集，处理成训练集和测试集
+    从这个打印的结果可以看出，训练数据的文本长度的75%分位点为100.75，所以后面模型训练时的padding长度统一选取100
+'''
+
+
 import pandas as pd
 
 
@@ -36,5 +44,4 @@ test_df = pd.DataFrame({'label': labels, 'text': texts})
 
 train_df['text_len'] = train_df['text'].apply(lambda x: len(x))
 print(train_df.describe())
-#从这个结构展示可以看出，训练数据的文本长度的75%分位点为100.75，所以后面模型训练时的padding长度统一选取100
 # print('train_df[\'text_len\']:',train_df['text_len'])
