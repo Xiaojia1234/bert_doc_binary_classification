@@ -9,10 +9,11 @@ import pandas as pd
 def read_txt_file(file_path):
     with open(file_path, 'r', encoding='utf-8') as f:
         content = [_.strip() for _ in f.readlines()]
-
+    # print('content[0]:',len(content[0]),content[0])
     labels, texts = [], []
     for line in content:
         parts = line.split()
+        # print('parts:',len(parts),parts)
         label, text = parts[0], ''.join(parts[1:])
         labels.append(label)
         texts.append(text)
@@ -22,15 +23,17 @@ def read_txt_file(file_path):
 
 file_path = 'data/train.txt'
 labels, texts = read_txt_file(file_path)
+# print('labels:',len(labels),labels)
+# print('texts:',len(texts),texts)
 train_df = pd.DataFrame({'label': labels, 'text': texts})
 
 file_path = 'data/test.txt'
 labels, texts = read_txt_file(file_path)
 test_df = pd.DataFrame({'label': labels, 'text': texts})
 
-print(train_df.head())
-print(test_df.head())
+# print(train_df.head())
+# print(test_df.head())
 
 train_df['text_len'] = train_df['text'].apply(lambda x: len(x))
-print(train_df.describe())
-
+# print(train_df.describe())
+# print('train_df[\'text_len\']:',train_df['text_len'])
